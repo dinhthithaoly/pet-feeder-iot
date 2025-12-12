@@ -1,0 +1,133 @@
+{% extends "layout.html" %} {% block title %}Lịch sử cho ăn{% endblock %} {%
+block main %}
+
+<div class="container-fluid py-4">
+  <!-- Enhanced header with better typography and spacing -->
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+      <h1
+        class="mb-1"
+        style="font-size: 2rem; font-weight: 700; color: #2c3e50"
+      >
+        <i
+          class="bi bi-clock-history"
+          style="color: #ff6b6b; margin-right: 8px"
+        ></i>
+        Lịch sử cho ăn
+      </h1>
+      <p class="text-muted mb-0">Xem toàn bộ nhật ký cho ăn của thú cưng</p>
+    </div>
+    <!-- Improved clear button styling -->
+    <a
+      href="/dashboard/clear"
+      class="btn btn-danger"
+      style="padding: 8px 20px; font-weight: 500; border-radius: 6px"
+    >
+      <i class="bi bi-trash"></i> Xóa lịch sử
+    </a>
+  </div>
+
+  <!-- Responsive table wrapper with shadow and rounded corners -->
+  <div
+    class="table-responsive"
+    style="
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      background: white;
+      overflow: hidden;
+    "
+  >
+    {% if logs %}
+    <table class="table table-hover mb-0" style="border: none">
+      <thead
+        style="
+          background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+          border: none;
+        "
+      >
+        <tr style="border: none">
+          <th
+            style="
+              color: white;
+              font-weight: 600;
+              padding: 16px 20px;
+              border: none;
+            "
+          >
+            ⏰ Thời gian
+          </th>
+          <th
+            style="
+              color: white;
+              font-weight: 600;
+              padding: 16px 20px;
+              border: none;
+            "
+          >
+            📌 Lý do
+          </th>
+          <th
+            style="
+              color: white;
+              font-weight: 600;
+              padding: 16px 20px;
+              border: none;
+            "
+          >
+            🍽 Khẩu phần
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for row in logs %}
+        <!-- Improved row styling with subtle hover effect -->
+        <tr style="border-bottom: 1px solid #ecf0f1; transition: all 0.2s ease">
+          <td style="padding: 14px 20px; color: #2c3e50; font-weight: 500">
+            {{ row.time }}
+          </td>
+          <td style="padding: 14px 20px; color: #555">{{ row.reason }}</td>
+          <td style="padding: 14px 20px">
+            <span
+              style="
+                background: #e8f5e9;
+                color: #2e7d32;
+                padding: 4px 12px;
+                border-radius: 4px;
+                font-weight: 500;
+                display: inline-block;
+              "
+            >
+              {{ row.portion }}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <!-- Added empty state when no data available -->
+    <div style="padding: 40px; text-align: center">
+      <div style="font-size: 48px; margin-bottom: 12px">📭</div>
+      <p style="color: #7f8c8d; font-size: 16px; margin-bottom: 8px">
+        Chưa có dữ liệu
+      </p>
+      <p style="color: #bdc3c7; font-size: 14px">
+        Lịch sử cho ăn sẽ được hiển thị ở đây
+      </p>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  tr:hover {
+    background-color: #fafafa !important;
+  }
+
+  tr:hover td {
+    color: #ff6b6b;
+  }
+</style>
+
+{% endblock %}

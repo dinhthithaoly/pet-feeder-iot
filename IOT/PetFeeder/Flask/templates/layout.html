@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetFeeder - {% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
+    <style>
+      :root {
+        --primary: #ff6b6b;
+        --primary-light: #ff8e8e;
+        --primary-dark: #e84d4d;
+        --accent: #4ecdc4;
+        --accent-light: #7ee8df;
+        --neutral-50: #fafafa;
+        --neutral-100: #f5f5f5;
+        --neutral-200: #e9e9e9;
+        --neutral-700: #404040;
+        --neutral-900: #1a1a1a;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(135deg, #fef3f2 0%, #f0f9f8 100%);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", sans-serif;
+        min-height: 100vh;
+        color: var(--neutral-900);
+      }
+
+      /* Navigation Styles */
+      nav {
+        background: white;
+        padding: 20px 30px;
+        border-radius: 20px;
+        margin-bottom: 35px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        border: 1px solid rgba(255, 107, 107, 0.1);
+      }
+
+      nav .logo {
+        font-size: 24px;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      nav a {
+        color: var(--neutral-700);
+        font-size: 15px;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      nav a:hover {
+        color: var(--primary);
+        background: rgba(255, 107, 107, 0.1);
+        transform: translateX(4px);
+      }
+
+      nav a i {
+        font-size: 18px;
+      }
+
+      /* Container Box Styles */
+      .container-box {
+        background: white;
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(255, 107, 107, 0.08);
+        backdrop-filter: blur(10px);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          gap: 15px;
+          padding: 15px 20px;
+          margin-bottom: 20px;
+        }
+
+        nav .logo {
+          margin-right: 0;
+        }
+
+        nav a {
+          padding: 10px 12px;
+          font-size: 14px;
+        }
+
+        .container-box {
+          padding: 20px;
+          border-radius: 16px;
+        }
+
+        body {
+          padding: 0 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          gap: 10px;
+        }
+
+        nav a {
+          font-size: 12px;
+          padding: 8px 10px;
+        }
+
+        nav i {
+          font-size: 16px !important;
+        }
+
+        .container-box {
+          padding: 15px;
+        }
+      }
+
+      /* Animation */
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .container-box {
+        animation: slideIn 0.4s ease-out;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container mt-5 mb-5">
+      <nav>
+        <a href="/" class="logo"><i class="bi bi-paw-fill"></i> PetFeeder</a>
+        <a href="/"
+          ><i class="bi bi-camera-video-fill"></i> <span>Camera</span></a
+        >
+        <a href="/dashboard"
+          ><i class="bi bi-clock-history"></i> <span>Lịch sử</span></a
+        >
+        <a href="/settings"
+          ><i class="bi bi-gear-fill"></i> <span>Cài đặt</span></a
+        >
+      </nav>
+
+      <div class="container-box">{% block main %}{% endblock %}</div>
+    </div>
+  </body>
+</html>

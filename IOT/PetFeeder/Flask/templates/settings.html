@@ -1,0 +1,217 @@
+{% extends "layout.html" %} {% block title %}Cài đặt{% endblock %} {% block main
+%}
+
+<div style="max-width: 900px; margin: 0 auto">
+  <!-- Header Section -->
+  <div style="margin-bottom: 40px">
+    <h1
+      style="
+        font-size: 32px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      "
+    >
+      <i class="bi bi-gear" style="font-size: 32px; color: #ff6b6b"></i>
+      Cài đặt hệ thống
+    </h1>
+    <p style="color: #666; margin: 0; font-size: 14px">
+      Điều chỉnh thời gian cho ăn và khẩu phần cho thú cưng của bạn
+    </p>
+  </div>
+
+  <form
+    action="/settings"
+    method="post"
+    style="
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      border: 1px solid #f0f0f0;
+    "
+  >
+    <!-- Feeding Schedule Section -->
+    <div style="margin-bottom: 36px">
+      <h2
+        style="
+          font-size: 18px;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin: 0 0 16px 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        "
+      >
+        <span style="font-size: 24px">⏳</span>
+        Thời gian giữa 2 lần cho ăn
+      </h2>
+      <p style="color: #999; font-size: 13px; margin: 0 0 16px 0">
+        Đặt khoảng thời gian tự động giữa các lần cho ăn
+      </p>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px">
+        <div>
+          <label
+            style="
+              display: block;
+              font-size: 13px;
+              font-weight: 600;
+              color: #1a1a1a;
+              margin-bottom: 8px;
+            "
+            >Giờ</label
+          >
+          <input
+            type="number"
+            name="hours"
+            min="0"
+            style="
+              width: 100%;
+              padding: 12px;
+              border: 2px solid #e8e8e8;
+              border-radius: 10px;
+              font-size: 14px;
+              transition: border-color 0.2s;
+              box-sizing: border-box;
+            "
+            value="{{ settings.feed_hours }}"
+            onmouseover="this.style.borderColor='#ff6b6b'"
+            onmouseout="this.style.borderColor='#e8e8e8'"
+          />
+        </div>
+        <div>
+          <label
+            style="
+              display: block;
+              font-size: 13px;
+              font-weight: 600;
+              color: #1a1a1a;
+              margin-bottom: 8px;
+            "
+            >Phút</label
+          >
+          <input
+            type="number"
+            name="minutes"
+            min="0"
+            max="59"
+            style="
+              width: 100%;
+              padding: 12px;
+              border: 2px solid #e8e8e8;
+              border-radius: 10px;
+              font-size: 14px;
+              transition: border-color 0.2s;
+              box-sizing: border-box;
+            "
+            value="{{ settings.feed_minutes }}"
+            onmouseover="this.style.borderColor='#ff6b6b'"
+            onmouseout="this.style.borderColor='#e8e8e8'"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Portion Size Section -->
+    <div style="margin-bottom: 32px">
+      <h2
+        style="
+          font-size: 18px;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin: 0 0 16px 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        "
+      >
+        <span style="font-size: 24px">🍽</span>
+        Khẩu phần
+      </h2>
+      <p style="color: #999; font-size: 13px; margin: 0 0 16px 0">
+        Chọn kích cỡ khẩu phần cho mỗi lần cho ăn
+      </p>
+
+      <select
+        name="portion"
+        style="
+          width: 100%;
+          padding: 12px 16px;
+          border: 2px solid #e8e8e8;
+          border-radius: 10px;
+          font-size: 14px;
+          background: white;
+          cursor: pointer;
+          transition: border-color 0.2s;
+        "
+        onmouseover="this.style.borderColor='#ff6b6b'"
+        onmouseout="this.style.borderColor='#e8e8e8'"
+      >
+        <option value="SMALL">Nhỏ (50ml)</option>
+        <option value="MED">Vừa (100ml)</option>
+        <option value="LARGE">Lớn (150ml)</option>
+      </select>
+    </div>
+
+    <!-- Button Section -->
+    <div
+      style="
+        display: flex;
+        gap: 12px;
+        margin-top: 32px;
+        padding-top: 32px;
+        border-top: 1px solid #f0f0f0;
+      "
+    >
+      <button
+        type="submit"
+        style="
+          flex: 1;
+          padding: 14px 24px;
+          background: linear-gradient(135deg, #ff6b6b 0%, #ff8c42 100%);
+          color: white;
+          border: none;
+          border-radius: 10px;
+          font-size: 15px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        "
+        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(255,107,107,0.3)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
+      >
+        <i class="bi bi-save"></i>
+        Lưu cài đặt
+      </button>
+      <button
+        type="reset"
+        style="
+          padding: 14px 24px;
+          background: #f5f5f5;
+          color: #1a1a1a;
+          border: 2px solid #e8e8e8;
+          border-radius: 10px;
+          font-size: 15px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+        "
+        onmouseover="this.style.background='#efefef'"
+        onmouseout="this.style.background='#f5f5f5'"
+      >
+        Huỷ
+      </button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
